@@ -2,14 +2,14 @@ package com.example
 
 import doobie._
 import doobie.implicits._
-
 import cats._
 import cats.effect._
 import cats.implicits._
+import doobie.util.transactor.Transactor.Aux
 
 object DoobiePlayground extends App {
 
-  val xa = Transactor.fromDriverManager[IO](
+  val xa: Aux[IO, Unit] = Transactor.fromDriverManager[IO](
     "org.postgresql.Driver",
     "jdbc:postgresql://localhost:5432/world",
     "postgres",
@@ -33,8 +33,10 @@ object DoobiePlayground extends App {
 
   println(program3.transact(xa).unsafeRunSync())
 
-  sql"select name from country"
-    .query[String]
+  case class Country(name: String, continent: String)
+
+  sql"select name, continent from country"
+    .query[Country]
     .to[List]
     .transact(xa)
     .unsafeRunSync()
