@@ -8,6 +8,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object SlickPlayground extends App {
 
   val db = Database.forConfig("slick-postgres")
+
   try {
     val countries = TableQuery[Countries]
 

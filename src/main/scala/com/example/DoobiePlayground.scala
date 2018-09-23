@@ -37,10 +37,11 @@ object DoobiePlayground extends App {
 
   sql"select name, continent from country"
     .query[Country]
-    .to[List]
+    .stream
+    .take(5)
+    .compile.toList
     .transact(xa)
     .unsafeRunSync()
-    .take(5)
     .foreach(println)
 
 }

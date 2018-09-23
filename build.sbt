@@ -33,5 +33,8 @@ libraryDependencies ++= Seq(
 
   "org.tpolecat" %% "doobie-core"     % "0.5.3",
   "org.tpolecat" %% "doobie-postgres" % "0.5.3",
-  "org.tpolecat" %% "doobie-specs2"   % "0.5.3"
+  "org.tpolecat" %% "doobie-specs2"   % "0.5.3",
+
+  "io.monix" %% "monix" % "3.0.0-RC1",
+  "io.monix" %% "monix-eval" % "3.0.0-RC1"
 )
