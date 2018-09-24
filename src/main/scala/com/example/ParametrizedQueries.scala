@@ -67,4 +67,18 @@ object ParametrizedQueries extends App {
     .unsafeRunSync()
     .foreach(println)
 
+  def proc(range: Range): fs2.Stream[ConnectionIO, Country] = {
+    val query =
+      """
+        |select code, name, population, gnp
+        |from country
+        |where population > ?
+        |and population < ?
+      """.stripMargin
+    HC.stream[Country](query, HPS.set((range.min, range.max)), chunkSize = 512)
+  }
+
+  println("manually prepared statement")
+  proc(150000000 to 200000000).quick.unsafeRunSync()
+
 }
