@@ -1,4 +1,4 @@
-name := "akka-quickstart-scala"
+name := "databse-libraries-scala"
 
 version := "1.0"
 
