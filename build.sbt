@@ -2,7 +2,7 @@ name := "databse-libraries-scala"
 
 version := "1.0"
 
-scalaVersion := "2.12.6"
+scalaVersion := "2.12.7"
 
 scalacOptions += "-Ypartial-unification"
 
